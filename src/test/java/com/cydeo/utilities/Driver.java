@@ -42,54 +42,55 @@ public class Driver {
         Depending on the browserType our switch statement will determine
         to open specific type of browser/driver
          */
-        switch(browserType){
-            case "remote-chrome":
-                try {
-                    // assign your grid server address
-                    String gridAddress = "174.129.57.20";
-                    URL url = new URL("http://"+ gridAddress + ":4444/wd/hub");
-                    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                    desiredCapabilities.setBrowserName("chrome");
-                    driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
-                    //driverPool.set(new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"),desiredCapabilities));
+            switch(browserType){
+                case "remote-chrome":
+                    try {
+                        // assign your grid server address
+                        String gridAddress = "34.229.120.236";
+                        URL url = new URL("http://"+ gridAddress + ":4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("chrome");
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                        //driverPool.set(new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"),desiredCapabilities));
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "remote-firefox":
-                try {
-                    // assign your grid server address
-                    String gridAddress = "174.129.57.20";
-                    URL url = new URL("http://"+ gridAddress + ":4444/wd/hub");
-                    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                    desiredCapabilities.setBrowserName("firefox");
-                    driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
-                    //driverPool.set(new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"),desiredCapabilities));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "remote-firefox":
+                    try {
+                        // assign your grid server address
+                        String gridAddress = "34.229.120.236";
+                        URL url = new URL("http://"+ gridAddress + ":4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("firefox");
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                        //driverPool.set(new RemoteWebDriver(new URL("http://0.0.0.0:4444/wd/hub"),desiredCapabilities));
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
 
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driverPool.set(new ChromeDriver());
-                driverPool.get().manage().window().maximize();
-                driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                driverPool.set(new FirefoxDriver());
-                driverPool.get().manage().window().maximize();
-                driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
+                //IP --> 44.201.219.205
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    driverPool.set(new ChromeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    driverPool.set(new FirefoxDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    break;
 
+            }
         }
-        }
 
-    // Same driver instance will be returned every time we call Driver.getDriver() method
-       return driverPool.get();
+        // Same driver instance will be returned every time we call Driver.getDriver() method
+        return driverPool.get();
 
     }
 
